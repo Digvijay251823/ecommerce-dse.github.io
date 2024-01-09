@@ -17,12 +17,161 @@ function Header({ className }: { className: string }) {
   const theme = useThemeStore((state) => state.theme);
 
   return (
-    <header>
+    <header className={`fixed top-0 left-0 right-0 z-[1000] `}>
+      {/*this is for medium devices and mobile */}
       <div
-        className={`flex items-center justify-between md:px-20 px-5 py-3 border-b ${
+        className={`md:flex items-center justify-between px-5 py-3 border-b lg:hidden w-full ${
           theme === "dark"
             ? "text-white bg-stone-900 border-stone-700"
-            : "text-black"
+            : "text-black bg-white "
+        }`}
+      >
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between w-full">
+            <p className={` text-3xl font-extrabold ${className}`}>XOCO</p>
+            {/*for phones */}
+            <div className={`md:hidden pl-5 h-10 flex items-center`}>
+              <div className="flex items-center gap-3">
+                <div className=" items-center flex">
+                  {theme === "dark" ? (
+                    <button className="" onClick={() => Toggletheme("light")}>
+                      <SunIcon className="h-6 w-6" />
+                    </button>
+                  ) : (
+                    <button className="" onClick={() => Toggletheme("dark")}>
+                      <MoonIcon className="h-6 w-6" />
+                    </button>
+                  )}
+                </div>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                      : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                  } p-2 rounded-lg`}
+                >
+                  <HeartIcon className="h-5 w-5" />
+                </button>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                      : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                  } p-2 rounded-lg`}
+                >
+                  <ShoppingBagIcon className="h-5 w-5" />
+                </button>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                      : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                  } p-2 rounded-lg`}
+                >
+                  <Cog6ToothIcon className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+          <form
+            className={`flex items-center md:hidden mt-5 ${
+              theme === "dark" ? "bg-stone-700" : "bg-stone-100"
+            } px-2 py-2 rounded-2xl`}
+          >
+            <button className="text-stone-400 mx-2 ">
+              <MagnifyingGlassIcon className="h-5 w-5" />
+            </button>
+            <input
+              type="text"
+              placeholder="search..."
+              className={`py-1 ${
+                theme === "dark" ? "bg-stone-700" : "bg-stone-100"
+              } outline-none`}
+            />
+          </form>
+        </div>
+        <div className="md:flex items-center gap-5 hidden">
+          <form
+            className={`md:flex items-center hidden ${
+              theme === "dark" ? "bg-stone-700" : "bg-stone-100"
+            } px-2 py-2 rounded-2xl`}
+          >
+            <button className="text-stone-400 mx-2 ">
+              <MagnifyingGlassIcon className="h-5 w-5" />
+            </button>
+            <input
+              type="text"
+              placeholder="search..."
+              className={`py-1.5 ${
+                theme === "dark" ? "bg-stone-700" : "bg-stone-100"
+              } outline-none`}
+            />
+          </form>
+          <div
+            className={`border-l-2 ${
+              theme === "dark" ? "border-stone-700" : "border-stone-200"
+            } pl-5 h-10 flex items-center`}
+          >
+            <div className="w-40 flex justify-center">
+              <button
+                className={`px-6 py-2 rounded-xl border transition-all duration-300 shadow-md hover:scale-105 hover:shadow-2xl ${
+                  theme === "dark"
+                    ? "border-orange-700 text-orange-700"
+                    : "border-orange-300 text-orange-500"
+                } rounded-md text-lg`}
+              >
+                LOGIN
+              </button>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className=" items-center flex">
+                {theme === "dark" ? (
+                  <button className="" onClick={() => Toggletheme("light")}>
+                    <SunIcon className="h-6 w-6" />
+                  </button>
+                ) : (
+                  <button className="" onClick={() => Toggletheme("dark")}>
+                    <MoonIcon className="h-6 w-6" />
+                  </button>
+                )}
+              </div>
+              <button
+                className={`${
+                  theme === "dark"
+                    ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                } p-2 rounded-lg`}
+              >
+                <HeartIcon className="h-5 w-5" />
+              </button>
+              <button
+                className={`${
+                  theme === "dark"
+                    ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                } p-2 rounded-lg`}
+              >
+                <ShoppingBagIcon className="h-5 w-5" />
+              </button>
+              <button
+                className={`${
+                  theme === "dark"
+                    ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                } p-2 rounded-lg`}
+              >
+                <Cog6ToothIcon className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* this is for large devices only */}
+      <div
+        className={`lg:flex items-center justify-between px-20 py-3 border-b hidden ${
+          theme === "dark"
+            ? "text-white bg-stone-900 border-stone-700"
+            : "text-black bg-white"
         }`}
       >
         <div className="flex items-center gap-10">
@@ -77,8 +226,10 @@ function Header({ className }: { className: string }) {
           >
             <div className="w-40 flex justify-center">
               <button
-                className={`px-6 py-1.5  ${
-                  theme === "dark" ? "bg-orange-900" : "bg-orange-300"
+                className={`px-6 py-2 rounded-xl border transition-all duration-300 shadow-md hover:scale-105 hover:shadow-2xl ${
+                  theme === "dark"
+                    ? "border-orange-700 text-orange-700"
+                    : "border-orange-300 text-orange-500"
                 } rounded-md text-lg`}
               >
                 LOGIN
@@ -89,7 +240,7 @@ function Header({ className }: { className: string }) {
                 className={`${
                   theme === "dark"
                     ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
-                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-100"
+                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
                 } p-2 rounded-lg`}
               >
                 <HeartIcon className="h-5 w-5" />
@@ -98,7 +249,7 @@ function Header({ className }: { className: string }) {
                 className={`${
                   theme === "dark"
                     ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
-                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-100"
+                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
                 } p-2 rounded-lg`}
               >
                 <ShoppingBagIcon className="h-5 w-5" />
@@ -107,7 +258,7 @@ function Header({ className }: { className: string }) {
                 className={`${
                   theme === "dark"
                     ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
-                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-100"
+                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
                 } p-2 rounded-lg`}
               >
                 <Cog6ToothIcon className="h-5 w-5" />
