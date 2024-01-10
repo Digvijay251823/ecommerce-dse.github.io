@@ -89,6 +89,26 @@ function Header({ className }: { className: string }) {
               } outline-none`}
             />
           </form>
+          <nav className="flex items-center justify-between mt-2">
+            <button className="text-lg hover:border hover:border-purple-400 px-2 py-0.5 rounded-md">
+              Home
+            </button>
+            <button className="text-lg hover:border hover:border-purple-400 px-2 py-0.5 rounded-md">
+              Deals
+            </button>
+            <button className="text-lg hover:border hover:border-purple-400 px-2 py-0.5 rounded-md">
+              Featured
+            </button>
+            <button
+              className={`text-lg  bg-gradient-to-r font-bold ${
+                theme === "light"
+                  ? `from-red-700  to-purple-700`
+                  : "from-red-400  to-purple-400"
+              } bg-clip-text text-transparent`}
+            >
+              New Arrivals
+            </button>
+          </nav>
         </div>
         <div className="md:flex items-center gap-5 hidden">
           <form

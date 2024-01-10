@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={NunitoFont.className}>
         <Header className={MerriweatherFont.className} />
-        <main className="pt-32 md:pt-14">{children}</main>
+        <main className="pt-36 md:pt-14">{children}</main>
       </body>
     </html>
   );

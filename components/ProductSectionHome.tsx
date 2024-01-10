@@ -2,10 +2,13 @@
 import useThemeStore from "@/context/store";
 import { FunnelIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 function ProductSectionHome() {
   const theme = useThemeStore((state) => state.theme);
+  const params = useSearchParams();
+  const products = params.get("products");
   return (
     <div className="mt-32 w-full flex flex-col items-center min-h-screen">
       <div className="">
@@ -43,7 +46,7 @@ function ProductSectionHome() {
                   : "text-black border-stone-200 bg-stone-100"
               } items-center`}
             >
-              <MagnifyingGlassIcon className="h-5 w-6 text-gray-500" />
+              <MagnifyingGlassIcon className="h-5 w-6 text-gray-400" />
               <input
                 type="text"
                 className={`flex-1 outline-none ${
@@ -52,7 +55,7 @@ function ProductSectionHome() {
                 placeholder="search..."
               />
               <button
-                className={` md:px-5 md:py-2 px-3 py-1 transition-all duration-300 drop-shadow-md hover:scale-105 hover:drop-shadow-xl ${
+                className={` md:px-5 py-2 px-3 transition-all duration-300 drop-shadow-md hover:scale-105 hover:drop-shadow-xl w-max ${
                   theme === "dark"
                     ? "bg-stone-900 text-gray-300 rounded-xl"
                     : "bg-stone-700 text-white rounded-xl"

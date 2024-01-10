@@ -6,8 +6,8 @@ import React from "react";
 function HeroSection() {
   const theme = useThemeStore((state) => state.theme);
   return (
-    <div>
-      <div className="md:hidden w-full flex justify-center pt-5">
+    <div className="pt-5">
+      <div className="md:hidden w-full flex justify-center">
         <div>
           {theme === "dark" ? (
             <Image
@@ -79,7 +79,7 @@ function HeroSection() {
           </div>
           <div className="flex items-center justify-center mt-10 gap-10">
             <button
-              className={`md:text-lg text-md md:px-6 px-2 rounded-md md:py-3 py-2 shadow-lg hover:shadow-2xl ${
+              className={`md:text-lg text-md md:px-6 px-2 rounded-md md:py-3 py-2 shadow-lg hover:shadow-2xl min-w-max ${
                 theme === "dark"
                   ? "bg-stone-700 text-stone-200 transition-all duration-500 hover:scale-110"
                   : "text-white bg-gray-800 transition-all duration-500 hover:scale-110"
@@ -88,7 +88,7 @@ function HeroSection() {
               Explore Now
             </button>
             <div
-              className={`cursor-pointer flex items-center gap-5 border transition-all duration-500 hover:scale-110 shadow-lg hover:shadow-2xl ${
+              className={`cursor-pointer flex items-center gap-5 border transition-all duration-500 hover:scale-110 shadow-lg hover:shadow-2xl min-w-max ${
                 theme === "dark"
                   ? "border-stone-700 hover:border-purple-900"
                   : "hover:border-purple-300"
