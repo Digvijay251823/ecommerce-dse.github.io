@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
 
 import { Merriweather } from "next/font/google";
 import { Nunito } from "next/font/google";
 import { auth, signOut } from "@/auth";
+import { SessionProvider } from "next-auth/react";
 
 const NunitoFont = Nunito({
   subsets: ["cyrillic"],
-  weight: ["300", "900"],
-  style: ["normal", "italic"],
-});
-const MerriweatherFont = Merriweather({
-  subsets: ["latin"],
   weight: ["300", "900"],
   style: ["normal", "italic"],
 });
@@ -28,20 +23,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
-  const SignOut = async () => {
-    "use server";
-    await signOut();
-  };
   return (
-    <html lang="en">
-      <body className={NunitoFont.className}>
-        <Header
-          className={MerriweatherFont.className}
-          session={session}
-          SignOut={SignOut}
-        />
-        <div className="pt-32 md:pt-14">{children}</div>
-      </body>
-    </html>
+    <section className="md:pt-5">
+      <SessionProvider session={session}>{children}</SessionProvider>
+    </section>
   );
 }

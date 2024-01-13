@@ -34,13 +34,13 @@ function ProductSectionHome() {
               className="transform rotate-90  md:w-10 h-auto w-8"
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             <p className="text-gray-400 text-center">
               search for the latest fashion articles and find amazing products
               to buy from our huge collection
             </p>
-            <div
-              className={`flex px-4 py-2 rounded-2xl mt-10 border md:mx-0 mx-3 ${
+            <form
+              className={`flex px-4 py-2 rounded-2xl mt-10 border md:mx-0 mx-5 md:w-full ${
                 theme === "dark"
                   ? "bg-stone-700 text-white border-stone-600"
                   : "text-black border-stone-200 bg-stone-100"
@@ -51,35 +51,26 @@ function ProductSectionHome() {
                 type="text"
                 className={`flex-1 outline-none ${
                   theme === "dark" ? "bg-stone-700" : "bg-stone-100"
-                } px-2 py-3`}
+                } md:px-2 px-1 py-3`}
                 placeholder="search..."
               />
               <button
-                className={` md:px-5 py-2 px-3 transition-all duration-300 drop-shadow-md hover:scale-105 hover:drop-shadow-xl w-max ${
+                className={` md:px-5 py-2 px-3 transition-all duration-300 drop-shadow-md hover:scale-105 hover:drop-shadow-xl  ${
                   theme === "dark"
                     ? "bg-stone-900 text-gray-300 rounded-xl"
                     : "bg-stone-700 text-white rounded-xl"
                 }`}
               >
-                Explore Now
+                Explore
               </button>
-            </div>
+            </form>
           </div>
         </div>
         <div>
           <div className="">
             <div className="flex items-center justify-between text-gray-500 mt-10">
               <button
-                className={`px-2 py-1 rounded-md ${
-                  theme === "dark"
-                    ? "hover:bg-purple-950 hover:text-white"
-                    : "hover:bg-purple-200"
-                }`}
-              >
-                All
-              </button>
-              <button
-                className={`px-2 py-1 rounded-md ${
+                className={`px-2 py-1 rounded-md h-max ${
                   theme === "dark"
                     ? "hover:bg-purple-950 hover:text-white"
                     : "hover:bg-purple-200"
@@ -88,7 +79,7 @@ function ProductSectionHome() {
                 Popular
               </button>
               <button
-                className={`px-2 py-1 rounded-md ${
+                className={`px-2 py-1 rounded-md h-max ${
                   theme === "dark"
                     ? "hover:bg-purple-950 hover:text-white"
                     : "hover:bg-purple-200"
@@ -97,7 +88,7 @@ function ProductSectionHome() {
                 Hot
               </button>
               <button
-                className={`px-2 py-1 rounded-md ${
+                className={`px-2 py-1 rounded-md h-max ${
                   theme === "dark"
                     ? "hover:bg-purple-950 hover:text-white"
                     : "hover:bg-purple-200"
@@ -106,7 +97,7 @@ function ProductSectionHome() {
                 New
               </button>
               <button
-                className={`px-2 py-1 rounded-md ${
+                className={`px-2 py-1 rounded-md h-max ${
                   theme === "dark"
                     ? "hover:bg-purple-950 hover:text-white"
                     : "hover:bg-purple-200"

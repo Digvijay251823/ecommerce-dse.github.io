@@ -11,8 +11,18 @@ import {
 } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import Avatar from "./Header/Avatar";
 
-function Header({ className }: { className: string }) {
+function Header({
+  className,
+  session,
+  SignOut,
+}: {
+  className: string;
+  session: any;
+  SignOut: () => void;
+}) {
   const Toggletheme = useThemeStore((state) => state.setTheme);
   const theme = useThemeStore((state) => state.theme);
 
@@ -43,15 +53,17 @@ function Header({ className }: { className: string }) {
                     </button>
                   )}
                 </div>
-                <button
-                  className={`${
-                    theme === "dark"
-                      ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
-                      : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
-                  } p-2 rounded-lg`}
-                >
-                  <HeartIcon className="h-5 w-5" />
-                </button>
+                <Link href={"/user/wishlist"}>
+                  <button
+                    className={`${
+                      theme === "dark"
+                        ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                        : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                    } p-2 rounded-lg`}
+                  >
+                    <HeartIcon className="h-5 w-5" />
+                  </button>
+                </Link>
                 <button
                   className={`${
                     theme === "dark"
@@ -70,6 +82,11 @@ function Header({ className }: { className: string }) {
                 >
                   <Cog6ToothIcon className="h-5 w-5" />
                 </button>
+                {session?.user ? (
+                  <div>
+                    <Avatar data={session.user} SignOut={SignOut} />
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
@@ -89,28 +106,8 @@ function Header({ className }: { className: string }) {
               } outline-none`}
             />
           </form>
-          <nav className="flex items-center justify-between mt-2">
-            <button className="text-lg hover:border hover:border-purple-400 px-2 py-0.5 rounded-md">
-              Home
-            </button>
-            <button className="text-lg hover:border hover:border-purple-400 px-2 py-0.5 rounded-md">
-              Deals
-            </button>
-            <button className="text-lg hover:border hover:border-purple-400 px-2 py-0.5 rounded-md">
-              Featured
-            </button>
-            <button
-              className={`text-lg  bg-gradient-to-r font-bold ${
-                theme === "light"
-                  ? `from-red-700  to-purple-700`
-                  : "from-red-400  to-purple-400"
-              } bg-clip-text text-transparent`}
-            >
-              New Arrivals
-            </button>
-          </nav>
         </div>
-        <div className="md:flex items-center gap-5 hidden">
+        <div className="md:flex items-center gap-5 hidden mx-5">
           <form
             className={`md:flex items-center hidden ${
               theme === "dark" ? "bg-stone-700" : "bg-stone-100"
@@ -133,15 +130,23 @@ function Header({ className }: { className: string }) {
             } pl-5 h-10 flex items-center`}
           >
             <div className="w-40 flex justify-center">
-              <button
-                className={`px-6 py-2 rounded-xl border transition-all duration-300 shadow-md hover:scale-105 hover:shadow-2xl ${
-                  theme === "dark"
-                    ? "border-orange-700 text-orange-700"
-                    : "border-orange-300 text-orange-500"
-                } rounded-md text-lg`}
-              >
-                LOGIN
-              </button>
+              {session?.user ? (
+                <div>
+                  <Avatar data={session.user} SignOut={SignOut} />
+                </div>
+              ) : (
+                <Link href={"/api/auth/signin"}>
+                  <button
+                    className={`px-6 py-2 rounded-xl border transition-all duration-300 shadow-md hover:scale-105 hover:shadow-2xl ${
+                      theme === "dark"
+                        ? "border-orange-700 text-orange-700"
+                        : "border-orange-300 text-orange-500"
+                    } rounded-md text-lg`}
+                  >
+                    LOGIN
+                  </button>
+                </Link>
+              )}
             </div>
             <div className="flex items-center gap-3">
               <div className=" items-center flex">
@@ -155,15 +160,17 @@ function Header({ className }: { className: string }) {
                   </button>
                 )}
               </div>
-              <button
-                className={`${
-                  theme === "dark"
-                    ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
-                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
-                } p-2 rounded-lg`}
-              >
-                <HeartIcon className="h-5 w-5" />
-              </button>
+              <Link href={"/user/wishlist"}>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                      : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                  } p-2 rounded-lg`}
+                >
+                  <HeartIcon className="h-5 w-5" />
+                </button>
+              </Link>
               <button
                 className={`${
                   theme === "dark"
@@ -242,29 +249,39 @@ function Header({ className }: { className: string }) {
           <div
             className={`border-l-2 ${
               theme === "dark" ? "border-stone-700" : "border-stone-200"
-            } pl-5 h-10 flex items-center`}
+            } pl-1 h-10 flex items-center`}
           >
             <div className="w-40 flex justify-center">
-              <button
-                className={`px-6 py-2 rounded-xl border transition-all duration-300 shadow-md hover:scale-105 hover:shadow-2xl ${
-                  theme === "dark"
-                    ? "border-orange-700 text-orange-700"
-                    : "border-orange-300 text-orange-500"
-                } rounded-md text-lg`}
-              >
-                LOGIN
-              </button>
+              {session?.user ? (
+                <div>
+                  <Avatar data={session.user} SignOut={SignOut} />
+                </div>
+              ) : (
+                <Link href={"/api/auth/signin"}>
+                  <button
+                    className={`px-6 py-2 rounded-xl border transition-all duration-300 shadow-md hover:scale-105 hover:shadow-2xl ${
+                      theme === "dark"
+                        ? "border-orange-700 text-orange-700"
+                        : "border-orange-300 text-orange-500"
+                    } rounded-md text-lg`}
+                  >
+                    LOGIN
+                  </button>
+                </Link>
+              )}
             </div>
             <div className="flex items-center gap-3">
-              <button
-                className={`${
-                  theme === "dark"
-                    ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
-                    : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
-                } p-2 rounded-lg`}
-              >
-                <HeartIcon className="h-5 w-5" />
-              </button>
+              <Link href={"/user/wishlist"}>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? "text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950"
+                      : "text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200"
+                  } p-2 rounded-lg`}
+                >
+                  <HeartIcon className="h-5 w-5" />
+                </button>
+              </Link>
               <button
                 className={`${
                   theme === "dark"
