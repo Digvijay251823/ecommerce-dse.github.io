@@ -72,13 +72,15 @@ function Wishlist() {
                       theme === "dark" ? "bg-stone-800" : "bg-gray-100"
                     } w-full  h-[300px] rounded-3xl flex items-center justify-center relative`}
                   >
-                    <Image
-                      src={product?.images[0]?.secure_url}
-                      alt={product?.name}
-                      height={150}
-                      width={150}
-                      className="w-auto"
-                    />
+                    {product?.images[0]?.secure_url && (
+                      <Image
+                        src={product?.images[0]?.secure_url}
+                        alt={product?.name}
+                        height={150}
+                        width={150}
+                        className="w-auto"
+                      />
+                    )}
                     <p className="absolute right-0 bottom-0 mx-3 my-3 py-2 px-2 bg-white rounded-full drop-shadow-lg">
                       <HeartIcon className="h-6 w-6 text-red-400" />
                     </p>

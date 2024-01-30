@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 interface images {
-  public_id: string;
-  secure_url: string;
+  public_id?: string;
+  secure_url?: string;
   format?: string;
   etag?: string;
   resource_type?: string;

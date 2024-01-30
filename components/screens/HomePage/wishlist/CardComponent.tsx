@@ -17,13 +17,15 @@ function CardComponent({ product }: { product: Products }) {
         } w-full  h-[300px] p-5 rounded-xl flex items-center justify-center relative`}
       >
         <Link href={`/products/${product?._id}`}>
-          <Image
-            src={product?.images[0]?.secure_url}
-            alt={product?.name}
-            height={150}
-            width={150}
-            className="w-auto"
-          />
+          {product?.images[0]?.secure_url && (
+            <Image
+              src={product?.images[0]?.secure_url}
+              alt={product?.name}
+              height={150}
+              width={150}
+              className="w-auto"
+            />
+          )}
         </Link>
         {isCLicked ? (
           <button
