@@ -24,6 +24,7 @@ interface User_Netsted {
 }
 
 interface Products {
+  _id?: string;
   name: string;
   description: string;
   slug: string;

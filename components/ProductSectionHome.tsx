@@ -1,14 +1,52 @@
 "use client";
 import useThemeStore from "@/context/store";
-import { FunnelIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import {
+  FunnelIcon,
+  HeartIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import CardList from "./screens/HomePage/wishlist/CardList";
+import { Products } from "@/types/types";
+import CardComponent from "./screens/HomePage/wishlist/CardComponent";
 
 function ProductSectionHome() {
   const theme = useThemeStore((state) => state.theme);
   const params = useSearchParams();
+  const [productList, setProductList] = useState([]);
+  const [IsError, setIsError] = useState(false);
+  const [IsErrorMessage, setIsErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const products = params.get("products");
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      await fetch("/api/products")
+        .then((data) => {
+          if (data.ok) {
+            return data.json();
+          } else {
+            setIsError(true);
+            return data.json();
+          }
+        })
+        .then((data) => {
+          if (!IsError) {
+            setProductList(data.data);
+          } else {
+            setIsErrorMessage(data.message);
+          }
+        })
+        .catch((err) => {
+          setIsErrorMessage(err.message || err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    })();
+  }, [IsError]);
   return (
     <div className="mt-32 w-full flex flex-col items-center min-h-screen">
       <div className="">
@@ -117,6 +155,32 @@ function ProductSectionHome() {
               </button>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="w-full flex justify-center mt-20">
+        <div className="lg:w-[80vw] md:w-[90vw] w-[70vw]">
+          {!isLoading ? (
+            <div className="flex flex-wrap gap-5">
+              {productList?.length > 0 ? (
+                productList?.map((product: Products, key) => (
+                  <CardComponent key={key} product={product} />
+                ))
+              ) : (
+                <p>{IsErrorMessage}</p>
+              )}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-10">
+              <CardList />
+              <CardList />
+              <CardList />
+              <CardList />
+              <CardList />
+              <CardList />
+              <CardList />
+              <CardList />
+            </div>
+          )}
         </div>
       </div>
     </div>

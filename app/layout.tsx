@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
+import BottomNav from "@/components/BottomNav";
 
 import { Merriweather } from "next/font/google";
 import { Nunito } from "next/font/google";
@@ -40,7 +41,8 @@ export default async function RootLayout({
           session={session}
           SignOut={SignOut}
         />
-        <div className="pt-32 md:pt-14">{children}</div>
+        <div className="pt-14 md:pt-12">{children}</div>
+        <BottomNav />
       </body>
     </html>
   );
