@@ -1,7 +1,7 @@
 import ProductsPage from "@/components/screens/HomePage/Products/Products";
 import React from "react";
 
-export async function getProducts() {
+async function getProducts() {
   const response = await fetch(`${process.env.FRONTEND_URL}/api/products`);
   return response.json();
 }
