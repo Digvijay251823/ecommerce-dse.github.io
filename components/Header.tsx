@@ -57,39 +57,42 @@ function Header({
                   </button>
                 )}
               </div>
-
-              <button
-                className={`${
-                  theme === "dark"
-                    ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
-                        pathname === "/user/cart"
-                          ? "text-purple-500 bg-purple-950"
-                          : ""
-                      }`
-                    : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
-                        pathname === "/user/cart"
-                          ? "text-purple-700 bg-purple-200"
-                          : ""
-                      }`
-                } p-2 rounded-lg`}
-              >
-                <ShoppingBagIcon className="h-5 w-5" />
-              </button>
+              <Link href={"/user/cart"}>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
+                          pathname === "/user/cart"
+                            ? "text-purple-500 bg-purple-950"
+                            : ""
+                        }`
+                      : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
+                          pathname === "/user/cart"
+                            ? "text-purple-700 bg-purple-200"
+                            : ""
+                        }`
+                  } p-2 rounded-lg`}
+                >
+                  <ShoppingBagIcon className="h-5 w-5" />
+                </button>
+              </Link>
 
               {session?.user ? (
                 <div>
                   <Avatar data={session.user} SignOut={SignOut} />
                 </div>
               ) : (
-                <div
-                  className={` ${
-                    theme === "dark"
-                      ? "text-gray-400 hover:text-purple-400 cursor-pointer"
-                      : " text-gray-400 hover:text-purple-400 cursor-pointer"
-                  }`}
-                >
-                  <UserCircleIcon className="h-8 w-8" />
-                </div>
+                <Link href={"/api/auth/signin"}>
+                  <button
+                    className={`px-6 py-2 rounded-xl border transition-all duration-300 shadow-md hover:scale-105 hover:shadow-2xl ${
+                      theme === "dark"
+                        ? "border-orange-700 text-orange-700"
+                        : "border-orange-300 text-orange-500"
+                    } rounded-md text-lg`}
+                  >
+                    LOGIN
+                  </button>
+                </Link>
               )}
             </div>
           </div>
@@ -166,40 +169,44 @@ function Header({
                   <HeartIcon className="h-5 w-5" />
                 </button>
               </Link>
-              <button
-                className={`${
-                  theme === "dark"
-                    ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
-                        pathname === "/user/cart"
-                          ? "text-purple-500 bg-purple-950"
-                          : ""
-                      }`
-                    : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
-                        pathname === "/user/cart"
-                          ? "text-purple-700 bg-purple-200"
-                          : ""
-                      }`
-                } p-2 rounded-lg`}
-              >
-                <ShoppingBagIcon className="h-5 w-5" />
-              </button>
-              <button
-                className={`${
-                  theme === "dark"
-                    ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
-                        pathname === "/user/settings"
-                          ? "text-purple-500 bg-purple-950"
-                          : ""
-                      }`
-                    : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
-                        pathname === "/user/settings"
-                          ? "text-purple-700 bg-purple-200"
-                          : ""
-                      }`
-                } p-2 rounded-lg`}
-              >
-                <Cog6ToothIcon className="h-5 w-5" />
-              </button>
+              <Link href={"/user/cart"}>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
+                          pathname === "/user/cart"
+                            ? "text-purple-500 bg-purple-950"
+                            : ""
+                        }`
+                      : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
+                          pathname === "/user/cart"
+                            ? "text-purple-700 bg-purple-200"
+                            : ""
+                        }`
+                  } p-2 rounded-lg`}
+                >
+                  <ShoppingBagIcon className="h-5 w-5" />
+                </button>
+              </Link>
+              <Link href={"/settings"}>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
+                          pathname === "/user/settings"
+                            ? "text-purple-500 bg-purple-950"
+                            : ""
+                        }`
+                      : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
+                          pathname === "/user/settings"
+                            ? "text-purple-700 bg-purple-200"
+                            : ""
+                        }`
+                  } p-2 rounded-lg`}
+                >
+                  <Cog6ToothIcon className="h-5 w-5" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -335,40 +342,44 @@ function Header({
                   <HeartIcon className="h-5 w-5" />
                 </button>
               </Link>
-              <button
-                className={`${
-                  theme === "dark"
-                    ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
-                        pathname === "/user/cart"
-                          ? "text-purple-500 bg-purple-950"
-                          : ""
-                      }`
-                    : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
-                        pathname === "/user/cart"
-                          ? "text-purple-700 bg-purple-200"
-                          : ""
-                      }`
-                } p-2 rounded-lg`}
-              >
-                <ShoppingBagIcon className="h-5 w-5" />
-              </button>
-              <button
-                className={`${
-                  theme === "dark"
-                    ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
-                        pathname === "/user/settings"
-                          ? "text-purple-500 bg-purple-950"
-                          : ""
-                      }`
-                    : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
-                        pathname === "/user/settings"
-                          ? "text-purple-700 bg-purple-200"
-                          : ""
-                      }`
-                } p-2 rounded-lg`}
-              >
-                <Cog6ToothIcon className="h-5 w-5" />
-              </button>
+              <Link href={"/user/cart"}>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
+                          pathname === "/user/cart"
+                            ? "text-purple-500 bg-purple-950"
+                            : ""
+                        }`
+                      : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
+                          pathname === "/user/cart"
+                            ? "text-purple-700 bg-purple-200"
+                            : ""
+                        }`
+                  } p-2 rounded-lg`}
+                >
+                  <ShoppingBagIcon className="h-5 w-5" />
+                </button>
+              </Link>
+              <Link href={"/settings"}>
+                <button
+                  className={`${
+                    theme === "dark"
+                      ? `text-stone-300 bg-stone-800 transition-colors duration-500 hover:text-purple-500 hover:bg-purple-950 ${
+                          pathname === "/user/settings"
+                            ? "text-purple-500 bg-purple-950"
+                            : ""
+                        }`
+                      : `text-stone-800 bg-stone-100 transition-colors duration-500 hover:text-purple-700 hover:bg-purple-200 ${
+                          pathname === "/user/settings"
+                            ? "text-purple-700 bg-purple-200"
+                            : ""
+                        }`
+                  } p-2 rounded-lg`}
+                >
+                  <Cog6ToothIcon className="h-5 w-5" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
