@@ -9,26 +9,26 @@ function CartCard({ product }: { product: Products }) {
   console.log(selectedProduct);
   const theme = useThemeStore((state) => state.theme);
   return (
-    <div className="bg-white pb-5 rounded md:w-full w-[90vw] mx-5">
+    <div
+      className={`${
+        theme === "dark" ? "bg-stone-800" : "bg-white"
+      } rounded-2xl`}
+    >
       <div
-        className={`border-b md:mx-5 md:w-[500px]  ${
+        className={`${
           theme === "dark" ? "border-b-stone-700" : "border-b-stone-300"
         }`}
       >
-        <div className="p-2 md:p-5 flex items-center lg:gap-10 gap-5 relative w-full">
-          <button className="absolute top-0 right-0 p-5">
-            {" "}
+        <div className="p-2 md:p-5 flex items-center lg:gap-10 gap-5 relative">
+          <button
+            className={`absolute top-0 right-0 p-2 rounded-full text-red-400 transition-all duration-500 active:scale-75 ${
+              theme === "dark" ? "hover:bg-red-900" : "hover:bg-red-100 "
+            }`}
+          >
             <XMarkIcon className="h-6 w-6" />
           </button>
-          <div className="">
-            <input
-              type="checkbox"
-              value={product._id}
-              onChange={(e) => setSelectedProduct(e.target.value)}
-            />
-          </div>
           <div
-            className={`p-2 w-max rounded-md border ${
+            className={`p-2 ${
               theme === "dark" ? "bg-stone-800 border-gray-800" : "bg-stone-100"
             }`}
           >
@@ -42,8 +42,8 @@ function CartCard({ product }: { product: Products }) {
             )}
           </div>
           <div
-            className={`flex flex-col items-start gap-5 ${
-              theme === "dark" ? "text-gray-500" : "text-gray-700"
+            className={`flex flex-col items-start gap-5 flex-1 md:justify-between w-full font-sans ${
+              theme === "dark" ? "text-gray-200" : "text-gray-700"
             }`}
           >
             <p className={`font-semibold text-xl`}>{product.name}</p>
@@ -54,9 +54,11 @@ function CartCard({ product }: { product: Products }) {
             >
               controller
             </button>
-            <div className="flex items-center justify-between gap-5 md:w-[260px] w-[200px]">
+            <div className="flex items-center justify-between gap-5 w-full">
               <p className="underline">add to favourite</p>
-              <p className="font-semibold">$ {product.price}</p>
+              <p className="font-semibold text-2xl font-sans">
+                ₹ {product.price}
+              </p>
             </div>
           </div>
         </div>
